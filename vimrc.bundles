@@ -1,0 +1,382 @@
+" ----------------------------------------------------------------------------
+" Vim-Plug:Plgin management and setting
+" ----------------------------------------------------------------------------
+call plug#begin('~/.vim/bundle')
+
+" let mapleader = ',' " 配置leader, 默认'\', leader表示前缀
+" let g:mapleader = ','
+
+" if !exists('g:vim_plugins')
+let g:vim_plugins=['js', 'css',]
+" endif
+
+" ----------------------------------------------------------------------------
+" vim plugin bundle control, command model
+" :PlugInstall     install
+" :PlugInstall!    update
+" :PlugClean       remove plugin not in list
+" ----------------------------------------------------------------------------
+
+" display
+Plug 'Valloric/MatchTagAlways' " 高亮显示匹配的标签
+Plug 'bling/vim-airline' " 状态栏, buffer栏美化
+Plug 'vim-airline/vim-airline-themes' " 状态栏美化主题
+" Plug 'gorodinskiy/vim-coloresque' " 高亮显示文档中颜色代码, 会导致匹配时xxx.call()连在一起
+Plug 'airblade/vim-gitgutter' " git管理文档，实时显示diff
+" Plug 'inside/vim-search-pulse' "
+
+" fast move
+Plug 'vim-scripts/matchit.zip' " 快速匹配() [] {} 等
+Plug 'Lokaltog/vim-easymotion' " 跳转到任意位置, 空格  搜索两个字符，快速跳转, /替代vim默认的搜索功能，如果不喜欢可以去除
+" Plug 'unblevable/quick-scope'  " 快速移动, 会导致一行中单词中字符高亮
+
+" fast edit
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " 代码片段工具
+Plug 'godlygeek/tabular' " 代码按=或者: 对齐
+" Plug 'tpope/vim-repeat' " 重复上一次命令
+Plug 'gcmt/wildfire.vim' " 快速选取代码块
+Plug 'Raimondi/delimitMate' " 自动补全：(), [], {}, <>
+" Plug 'alvan/vim-closetag' " 自动关闭html, xml标签
+Plug 'mattn/emmet-vim' " 快速书写html
+Plug 'terryma/vim-multiple-cursors' " 多光标操作
+" Plug 'tpope/vim-surround' " 快速给单词添加 单引号，双引号，中括号等
+Plug 'bronson/vim-trailing-whitespace' " 将代码行最后无效的空格标红
+Plug 'scrooloose/nerdcommenter' " 快速注释工具
+" Plug 'editorconfig/editorconfig-vim' " 支持.editorconfig文件
+" Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'} " 格式化js,json,html,css,scss
+
+" tools
+" Plug 'Valloric/YouCompleteMe', {'do': './install.py'} " 自动补全
+" Plug 'scrooloose/syntastic' " 语法检查插件，写javascript配合eslint使用非常有帮助
+" Plug 'ruanyl/vim-eslint', {'do': 'npm install'} " eslint代码检测
+" Plug 'majutsushi/tagbar' " 适用于c++的插件，根据类折叠
+Plug 'plasticboy/vim-markdown' " markdown语法高亮
+" Plug 'tpope/vim-obsession' | Plug 'dhruvasagar/vim-prosession' " 保存当前打开文件、slpit窗口、buffer的状态, 下次在该目录下运行vim的时候自动还原
+Plug 'szw/vim-maximizer' " 最大化当前窗口\返回之前状态切换，在多个split窗口的非常有用
+" Plug 'thinca/vim-quickrun' " ,r  运行当前文件，如运行javascript
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} " 树形文件浏览
+Plug 'sjl/gundo.vim', {'on': 'GundoToggle'} " 查看文件历史修改记录
+Plug 'ruanyl/vim-fidget', {'do': 'npm install'} " vim版jsfiddle，打开3个split窗口，分别是css,js,html，快速写点小demo时比较实用
+" Plug 'MattesGroeger/vim-bookmarks' " 在左侧添加书签、注释等。
+" Plug 'ruanyl/vim-fixmyjs', {'on': 'Fixmyjs'}
+Plug 'moll/vim-bbye' " qq 删除当前buff
+Plug 'tpope/vim-fugitive' " git整合
+Plug 'vim-scripts/BufOnly.vim' " qo 关闭所有buff，当前除外
+Plug 'junegunn/gv.vim' " 插件管理
+
+" theme
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
+
+" search
+Plug 'ctrlpvim/ctrlp.vim' " 快速文件搜索+导航
+Plug 'tacahiroy/ctrlp-funky' " CtrlP插件，类似go to definition的功能
+Plug 'dyng/ctrlsf.vim', {'on': '<Plug>CtrlSFVwordExec'} " CtrlP插件，提供sublime类似的grep搜索
+Plug 'ggVGc/vim-fuzzysearch' " 模糊查找的功能
+Plug 'rking/ag.vim' " 提供快速grep功能
+
+" javascript
+Plug 'pangloss/vim-javascript' " JS语法高亮
+" Plug 'marijnh/tern_for_vim', {'do': 'npm install'} " javascript代码自动补全
+Plug 'othree/javascript-libraries-syntax.vim' " 一些javascript library的语法高亮
+Plug 'kchmck/vim-coffee-script' " coffee script语法高亮, 解决只有部分代码语法高亮问题，使全文件都会语法高亮
+" Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx']} " ,,d  光标定位在方法上面，自动生成js doc
+" Plug 'burnettk/vim-angular' " Angular相关
+Plug 'mxw/vim-jsx' " React JSX语法高亮
+
+" PHP
+" if count(g:vim_plugins, 'php')
+"    Plug 'StanAngeloff/php.vim', {'for': 'php'} " php语法高亮
+"    Plug 'mkusher/padawan.vim', {'for': 'php'} " 更加强大的php自动补全，能够检索composer项目，对相关依赖library进行补全
+"    Plug 'ruanyl/vim-php-manual', {'for': 'php'} " php手册
+"    Plug 'shawncplus/phpcomplete.vim', {'for': 'php'} " php自动补全增强
+"    Plug 'fantasyczl/blade-php-vim'
+" endif
+
+" CSS
+if count(g:vim_plugins, 'css')
+    Plug 'ruanyl/vim-caniuse', {'on': 'Caniuse', 'for': ['css', 'html']}
+    " Plug 'hail2u/vim-css3-syntax' " css3语法高亮
+    Plug 'cakebaker/scss-syntax.vim'
+    Plug 'JulesWang/css.vim'
+    au BufRead,BufNewFile *.scss set filetype=scss.css
+endif
+
+call plug#end()
+
+" ----------------------------------------------------------------------------
+" NERDTree
+" ----------------------------------------------------------------------------
+noremap <S-z> :NERDTreeToggle<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif " 打开文件夹时自动加载目录
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " 关闭最后一个文件时关闭目录
+
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+
+" ----------------------------------------------------------------------------
+" tagbar
+" require ctags, jsctags
+" npm install -g git+https://github.com/ramitos/jsctags.git
+" ----------------------------------------------------------------------------
+let g:tagbar_type_javascript = {
+    \ 'ctagsbin' : 'jsctags'
+    \ }
+nnoremap <leader>t :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+let g:tagbar_width = 50
+
+" ----------------------------------------------------------------------------
+" ctrlp.vim
+" ----------------------------------------------------------------------------
+nnoremap <leader>m :CtrlPMRU<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](node_modules|target|dist)|\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
+    \ }
+let g:ctrlp_follow_symlinks=1
+
+" ----------------------------------------------------------------------------
+" ctrlp-funky
+" Mapping: <Leader>fu
+" ----------------------------------------------------------------------------
+let g:ctrlp_funky_matchtype = 'path'
+let g:ctrlp_funky_syntax_highlight = 1
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+
+" ----------------------------------------------------------------------------
+" ctrlsf.vim
+" ----------------------------------------------------------------------------
+vmap <Leader>s <Plug>CtrlSFVwordExec
+
+" ----------------------------------------------------------------------------
+" ag.vim
+" ----------------------------------------------------------------------------
+nnoremap <Leader><Leader>a :Ag!<space>
+let g:ag_working_path_mode='r'
+
+" ----------------------------------------------------------------------------
+" vim-fuzzysearch
+" ----------------------------------------------------------------------------
+nnoremap <leader><leader>/ :FuzzySearch<cr>
+
+" ----------------------------------------------------------------------------
+" vim-airline
+" ----------------------------------------------------------------------------
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+
+" ----------------------------------------------------------------------------
+" vim-trailing-whitespace
+" Mapping: <leader><space>
+" ----------------------------------------------------------------------------
+map <leader><space> :FixWhitespace<cr>
+
+" ----------------------------------------------------------------------------
+" vim-bookmarks
+" ----------------------------------------------------------------------------
+let g:bookmark_no_default_key_mappings = 1
+nnoremap <Leader><Leader>m :BookmarkToggle<CR>
+nnoremap <Leader>i :BookmarkAnnotate<CR>
+nnoremap <Leader>a :BookmarkShowAll<CR>
+nnoremap <Leader>j :BookmarkNext<CR>
+nnoremap <Leader>k :BookmarkPrev<CR>
+nnoremap <Leader>c :BookmarkClear<CR>
+nnoremap <Leader>x :BookmarkClearAll<CR>
+
+" ----------------------------------------------------------------------------
+" vim-maximizer
+" ----------------------------------------------------------------------------
+nnoremap <tab>q :MaximizerToggle<CR>
+
+" ----------------------------------------------------------------------------
+" vim-colors-solarized
+" ----------------------------------------------------------------------------
+let g:solarized_termcolors=16
+let g:solarized_termtrans=1
+" let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+
+" ----------------------------------------------------------------------------
+" vim-easymotion
+" ----------------------------------------------------------------------------
+map <space> <Plug>(easymotion-s2)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+let g:EasyMotion_smartcase = 1
+
+" ----------------------------------------------------------------------------
+" wildfire.vim
+" Mapping: <Enter>
+" ----------------------------------------------------------------------------
+let g:wildfire_objects = {
+    \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
+    \ "html,xml" : ["at"],
+\ }
+let g:wildfire_fuel_map = "<ENTER>"
+let g:wildfire_water_map = "<BS>"
+
+" ----------------------------------------------------------------------------
+" YouCompleteMe
+" ----------------------------------------------------------------------------
+let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_complete_in_strings = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_key_list_select_completion = ['<Tab>', '<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::', '(', 'use ', 'namespace ', '\'],
+            \   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.', 're!(?=[a-zA-Z]{3,4})'],
+            \   'html': ['<', '"', '</', ' '],
+            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'haskell' : ['.', 're!.'],
+            \   'scss,css': [ 're!^\s{2,4}', 're!:\s+' ],
+            \   'javascript': ['.', 're!(?=[a-zA-Z]{3,4})'],
+            \ }
+
+" ----------------------------------------------------------------------------
+" ultisnips
+" ----------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger="<c-\\>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" ----------------------------------------------------------------------------
+" delimitMate
+" ----------------------------------------------------------------------------
+let delimitMate_matchpairs = "(:),[:],{:}"
+let delimitMate_expand_cr = 1
+
+" ----------------------------------------------------------------------------
+" tabular
+" ----------------------------------------------------------------------------
+nmap <Leader>= :Tabularize /=<CR>
+vmap <Leader>= :Tabularize /=<CR>
+nmap <Leader>; :Tabularize /:<CR>
+vmap <Leader>; :Tabularize /:<CR>
+nmap <Leader>' :Tabularize /"<CR>
+vmap <Leader>' :Tabularize /"<CR>
+
+" ----------------------------------------------------------------------------
+" syntastic
+" ----------------------------------------------------------------------------
+let g:syntastic_error_symbol='✘'
+let g:syntastic_warning_symbol='❗'
+let g:syntastic_style_error_symbol='»'
+let g:syntastic_style_warning_symbol='•'
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_javascript_checkers = ['eslint']
+
+" ----------------------------------------------------------------------------
+" vim-markdown
+" ----------------------------------------------------------------------------
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_no_default_key_mappings=1
+let g:vim_markdown_frontmatter=1
+
+" ----------------------------------------------------------------------------
+" vim-jsx
+" ----------------------------------------------------------------------------
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files"
+
+" ----------------------------------------------------------------------------
+" vim-jsdoc
+" ----------------------------------------------------------------------------
+let g:jsdoc_default_mapping = 0
+autocmd FileType javascript nnoremap <Leader><Leader>d :JsDoc<CR>
+
+" ----------------------------------------------------------------------------
+" tern_for_vim
+" ----------------------------------------------------------------------------
+let tern_show_signature_in_pum = 1
+let tern_show_argument_hints = 'on_hold'
+autocmd FileType javascript nnoremap <leader>d :TernDef<CR>
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+
+" ----------------------------------------------------------------------------
+" padawan.vim
+" Generate Index: :call padawan#GenerateIndex()
+" Start Server: :call padawan#StartServer()
+" Stop Server: :call padawan#StopServer()
+" Restart Server: :call padawan#RestartServer()
+" cd ~/.vim/bundle/padawan.vim/padawan.php && composer install
+" ----------------------------------------------------------------------------
+
+" ----------------------------------------------------------------------------
+" gundo.vim
+" ----------------------------------------------------------------------------
+nnoremap <leader>h :GundoToggle<CR>
+let g:gundo_auto_preview = 0
+
+" ----------------------------------------------------------------------------
+" vim-autoformat
+"require: npm install -g js-beautify
+" ----------------------------------------------------------------------------
+autocmd FileType javascript,json,html,css,scss noremap <buffer>  <leader><leader>f :Autoformat<cr>
+
+" ----------------------------------------------------------------------------
+" vim-bbye
+" ----------------------------------------------------------------------------
+nnoremap qq :Bdelete<cr>
+
+" ----------------------------------------------------------------------------
+" BufOnly.vim
+" ----------------------------------------------------------------------------
+nnoremap <silent> qo :BufOnly<CR>
+
+" ------------------------------------------------------------
+" terryma/vim-multiple-cursors
+" ------------------------------------------------------------
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
+" ------------------------------------------------------------
+" vim-fidget
+" ------------------------------------------------------------
+noremap <C-w> :VimFidget<CR>
+
+" ------------------------------------------------------------
+" mattn/emmet-vim
+" ------------------------------------------------------------
+let g:user_emmet_expandabbr_key = '<Tab>a'
+
+" ------------------------------------------------------------
+" scrooloose/nerdcommenter'
+"<leader>cc - 注释, <leader>cb - 注释, <leader>cu - 解开注释
+" ------------------------------------------------------------
