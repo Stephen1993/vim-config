@@ -39,7 +39,7 @@ set t_vb=                 " vim命令出错时会有响声，该设置关闭响�
 set tm=500
 set nostartofline         " keep cursor postion when switching between buffers
 set number                " show line number
-set nowrap                " 当一行放不下代码时，取消自动换行
+" set nowrap                " 当一行放不下代码时，取消自动换行
 set list                  " 显示多余的前置或者后置空格
 set listchars=tab:›\ ,trail:•,extends:❯,precedes:❮ " 在set list下高亮显示tab和空格
 set showmatch             " 设置匹配模式，显示匹配的括号
@@ -62,7 +62,7 @@ set shiftround            " 使用 >> 或 << 时， 依shiftwidth 调整宽度
 " set hidden                " 允许在有未保存的修改时切换缓冲区，此时的修改由vim 负责保存
 set wildmode=longest:full,full " 在命令行打开文件或者输入命令时按tab自动补全
 set ttyfast               " 指示一个快速的终端连接
-set relativenumber        " show relative line number
+" set relativenumber        " show relative line number
 set ruler                 " show the current line number and column number在右下脚
 " set showcmd               " 在屏幕右下脚显示正在输入的命令
 " set noshowmode            " 显示当前处于什么模式下
@@ -91,8 +91,8 @@ set pastetoggle=<F5>                         " 切换'paste'的键盘码
 "let &colorcolumn="80,".join(range(120,999),",")
 " let &colorcolumn="120" " 120列高亮
 
-autocmd InsertEnter * :set norelativenumber " no relativenumber in insert mode
-autocmd InsertLeave * :set relativenumber   " show relativenumber when leave insert mode
+" autocmd InsertEnter * :set norelativenumber " no relativenumber in insert mode
+" autocmd InsertLeave * :set relativenumber   " show relativenumber when leave insert mode
 
 "create undo file
 if has('persistent_undo')
@@ -118,11 +118,11 @@ endif
 au InsertLeave * set nopaste
 
 "close popup menu when leave insert mode
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+" inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+" inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+" inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType javascript,json,css,scss,html set tabstop=2 shiftwidth=2 expandtab ai
@@ -148,7 +148,15 @@ noremap L $
 noremap <C-a> <Home>
 noremap <C-e> <End>
 noremap Y y$
-" I can type :help on my own, thanks.
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" zR 打开所有折叠
+" zM 关闭所有折叠
+" za 打开或关闭光折叠, zA 循环打开或关闭折叠
+" zi 翻转 'foldenable' 的值
+" zj 移动光标到下一个折叠开始处, zk 类似 zj
+" [z 移动光标到当前打开的折叠的开始处, ]z 类似 [z]
+noremap + za
+""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <F1> <Esc>
 "no Highlight
 noremap <silent><leader>/ :nohls<CR>
@@ -214,3 +222,49 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
+
+" F5编译和运行C程序，C++程序,Python程序，shell程序，F8 gdb调试
+autocmd FileType c map <F5> :call CompileRunGcc()<CR>
+autocmd FileType cpp map <F5> :call CompileRunGpp()<CR>
+autocmd FileType python map <F5> :w<cr>:!python %<cr>
+autocmd FileType javascript map <F5> :w<cr>:!node %<cr>
+autocmd FileType sh map <F5> :call CompileRunSH()<CR>
+autocmd FileType java map <F5> :call CompileRunJava()<CR>
+
+" <F5> 编译和运行C
+func! CompileRunGcc()
+exec "w"
+exec "!gcc % -o %<"
+exec "! ./%<"
+endfunc
+
+"< F5> 编译和运行C++
+func! CompileRunGpp()
+exec "w"
+exec "!g++ % -o %<"
+exec "! ./%<"
+endfunc
+
+" <F5> 运行python程序
+
+" <F5> 运行shell程序
+func! CompileRunSH()
+exec "w"
+exec "!chmod a+x %"
+exec "!./%"
+endfunc
+
+"< F5> 编译和运行Java
+func! CompileRunJava()
+exec "w"
+exec "!javac %"
+exec "!java %<"
+endfunc
+
+" <F8>  gdb调试
+" map <F8> :call Debug()<CR>
+" func!  Debug()
+" exec "w"
+" exec "!g++ % -o %< -gstabs+"
+" exec "!gdb %<"
+" endfunc

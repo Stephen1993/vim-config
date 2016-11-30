@@ -37,7 +37,7 @@ Plug 'godlygeek/tabular' " 代码按=或者: 对齐
 Plug 'gcmt/wildfire.vim' " 快速选取代码块
 Plug 'Raimondi/delimitMate' " 自动补全：(), [], {}, <>
 " Plug 'alvan/vim-closetag' " 自动关闭html, xml标签
-Plug 'mattn/emmet-vim' " 快速书写html
+" Plug 'mattn/emmet-vim' " 快速书写html
 Plug 'terryma/vim-multiple-cursors' " 多光标操作
 " Plug 'tpope/vim-surround' " 快速给单词添加 单引号，双引号，中括号等
 Plug 'bronson/vim-trailing-whitespace' " 将代码行最后无效的空格标红
@@ -46,8 +46,8 @@ Plug 'scrooloose/nerdcommenter' " 快速注释工具
 " Plug 'Chiel92/vim-autoformat', {'on': 'Autoformat'} " 格式化js,json,html,css,scss
 
 " tools
-" Plug 'Valloric/YouCompleteMe', {'do': './install.py'} " 自动补全
-" Plug 'scrooloose/syntastic' " 语法检查插件，写javascript配合eslint使用非常有帮助
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'} " 自动补全
+Plug 'scrooloose/syntastic' " 语法检查插件，写javascript配合eslint使用非常有帮助
 " Plug 'ruanyl/vim-eslint', {'do': 'npm install'} " eslint代码检测
 " Plug 'majutsushi/tagbar' " 适用于c++的插件，根据类折叠
 Plug 'plasticboy/vim-markdown' " markdown语法高亮
@@ -56,7 +56,7 @@ Plug 'szw/vim-maximizer' " 最大化当前窗口\返回之前状态切换，在�
 " Plug 'thinca/vim-quickrun' " ,r  运行当前文件，如运行javascript
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} " 树形文件浏览
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'} " 查看文件历史修改记录
-Plug 'ruanyl/vim-fidget', {'do': 'npm install'} " vim版jsfiddle，打开3个split窗口，分别是css,js,html，快速写点小demo时比较实用
+" Plug 'ruanyl/vim-fidget', {'do': 'npm install'} " vim版jsfiddle，打开3个split窗口，分别是css,js,html，快速写点小demo时比较实用
 " Plug 'MattesGroeger/vim-bookmarks' " 在左侧添加书签、注释等。
 " Plug 'ruanyl/vim-fixmyjs', {'on': 'Fixmyjs'}
 Plug 'moll/vim-bbye' " qq 删除当前buff
@@ -71,18 +71,18 @@ Plug 'tomasr/molokai'
 " search
 Plug 'ctrlpvim/ctrlp.vim' " 快速文件搜索+导航
 Plug 'tacahiroy/ctrlp-funky' " CtrlP插件，类似go to definition的功能
-Plug 'dyng/ctrlsf.vim', {'on': '<Plug>CtrlSFVwordExec'} " CtrlP插件，提供sublime类似的grep搜索
-Plug 'ggVGc/vim-fuzzysearch' " 模糊查找的功能
-Plug 'rking/ag.vim' " 提供快速grep功能
+" Plug 'dyng/ctrlsf.vim', {'on': '<Plug>CtrlSFVwordExec'} " CtrlP插件，提供sublime类似的grep搜索
+" Plug 'ggVGc/vim-fuzzysearch' " 模糊查找的功能
+" Plug 'rking/ag.vim' " 提供快速grep功能
 
 " javascript
 Plug 'pangloss/vim-javascript' " JS语法高亮
-" Plug 'marijnh/tern_for_vim', {'do': 'npm install'} " javascript代码自动补全
+Plug 'marijnh/tern_for_vim', {'do': 'npm install'} " javascript代码自动补全
 Plug 'othree/javascript-libraries-syntax.vim' " 一些javascript library的语法高亮
 Plug 'kchmck/vim-coffee-script' " coffee script语法高亮, 解决只有部分代码语法高亮问题，使全文件都会语法高亮
 " Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx']} " ,,d  光标定位在方法上面，自动生成js doc
 " Plug 'burnettk/vim-angular' " Angular相关
-Plug 'mxw/vim-jsx' " React JSX语法高亮
+" Plug 'mxw/vim-jsx' " React JSX语法高亮，会导致注释时向前缩进
 
 " PHP
 " if count(g:vim_plugins, 'php')
@@ -149,13 +149,13 @@ let g:tagbar_width = 50
 " ----------------------------------------------------------------------------
 " ctrlp.vim
 " ----------------------------------------------------------------------------
-nnoremap <leader>m :CtrlPMRU<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
+" nnoremap <leader>m :CtrlPMRU<CR>
+" nnoremap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/](node_modules|target|dist)|\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
     \ }
-let g:ctrlp_follow_symlinks=1
+" let g:ctrlp_follow_symlinks=1
 
 " ----------------------------------------------------------------------------
 " ctrlp-funky
@@ -163,23 +163,23 @@ let g:ctrlp_follow_symlinks=1
 " ----------------------------------------------------------------------------
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
-nnoremap <Leader>fu :CtrlPFunky<Cr>
+nnoremap F :CtrlPFunky<Cr>
 
 " ----------------------------------------------------------------------------
 " ctrlsf.vim
 " ----------------------------------------------------------------------------
-vmap <Leader>s <Plug>CtrlSFVwordExec
+" vmap <Leader>s <Plug>CtrlSFVwordExec
 
 " ----------------------------------------------------------------------------
 " ag.vim
 " ----------------------------------------------------------------------------
-nnoremap <Leader><Leader>a :Ag!<space>
-let g:ag_working_path_mode='r'
+" nnoremap <Leader><Leader>a :Ag!<space>
+" let g:ag_working_path_mode='r'
 
 " ----------------------------------------------------------------------------
 " vim-fuzzysearch
 " ----------------------------------------------------------------------------
-nnoremap <leader><leader>/ :FuzzySearch<cr>
+" nnoremap <leader><leader>/ :FuzzySearch<cr>
 
 " ----------------------------------------------------------------------------
 " vim-airline
@@ -244,11 +244,41 @@ let g:wildfire_water_map = "<BS>"
 " ----------------------------------------------------------------------------
 " YouCompleteMe
 " ----------------------------------------------------------------------------
-let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_complete_in_strings = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_key_list_select_completion = ['<Tab>', '<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+" set completeopt=longest,menu  "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
+inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+"上下左右键的行为 会显示其他信息
+" inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+" inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+" inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+" inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+let g:ycm_seed_identifiers_with_syntax=1  " 语法关键字补全
+"在注释输入中也能补全
+" let g:ycm_complete_in_comments = 1
+"在字符串输入中也能补全
+" let g:ycm_complete_in_strings = 1
+"注释和字符串中的文字也会被收入补全
+" let g:ycm_collect_identifiers_from_comments_and_strings = 0
+
+"youcompleteme 默认tab, s-tab 和自动补全冲突
+"let g:ycm_key_list_select_completion=['<c-n>']
+let g:ycm_key_list_select_completion = ['<Down>']
+"let g:ycm_key_list_previous_completion=['<c-p>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+" let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" 跳转到定义处
+" nnoremap <leader>pp :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>[[ :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>]] :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" 显示警告和错误信息
+nmap <F4> :YcmDiags<CR>
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_complete_in_strings = 1
+" let g:ycm_complete_in_comments = 1
+" let g:ycm_error_symbol = '✗'
+" let g:ycm_warning_symbol = '❗'
 let g:ycm_semantic_triggers =  {
             \   'c' : ['->', '.'],
             \   'objc' : ['->', '.'],
@@ -267,12 +297,17 @@ let g:ycm_semantic_triggers =  {
             \   'javascript': ['.', 're!(?=[a-zA-Z]{3,4})'],
             \ }
 
+" let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
+" let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
+" let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
+
 " ----------------------------------------------------------------------------
 " ultisnips
+" 可以配合 YouCompleteMe 使用，输入的时候会提示代码片段
 " ----------------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<c-\\>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<c-\\>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " ----------------------------------------------------------------------------
 " delimitMate
@@ -293,13 +328,19 @@ vmap <Leader>' :Tabularize /"<CR>
 " ----------------------------------------------------------------------------
 " syntastic
 " ----------------------------------------------------------------------------
-let g:syntastic_error_symbol='✘'
+" 设置错误符号
+let g:syntastic_error_symbol='✗'
+" 设置警告符号
 let g:syntastic_warning_symbol='❗'
-let g:syntastic_style_error_symbol='»'
-let g:syntastic_style_warning_symbol='•'
+" 是否在打开文件时检查
 let g:syntastic_check_on_open=1
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_javascript_checkers = ['eslint']
+" 是否在保存文件后检查
+let g:syntastic_check_on_wq=1
+" <leader>d 在 vim 底部显示详细错误描述
+" let g:syntastic_style_error_symbol='»'
+" let g:syntastic_style_warning_symbol='•'
+" let g:syntastic_enable_highlighting = 0
+" let g:syntastic_javascript_checkers = ['eslint']
 
 " ----------------------------------------------------------------------------
 " vim-markdown
@@ -324,7 +365,7 @@ autocmd FileType javascript nnoremap <Leader><Leader>d :JsDoc<CR>
 " ----------------------------------------------------------------------------
 let tern_show_signature_in_pum = 1
 let tern_show_argument_hints = 'on_hold'
-autocmd FileType javascript nnoremap <leader>d :TernDef<CR>
+autocmd FileType javascript nnoremap <leader>[[ :TernDef<CR>
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 " ----------------------------------------------------------------------------
@@ -369,12 +410,12 @@ let g:multi_cursor_quit_key='<Esc>'
 " ------------------------------------------------------------
 " vim-fidget
 " ------------------------------------------------------------
-noremap <C-w> :VimFidget<CR>
+" noremap <C-w> :VimFidget<CR>
 
 " ------------------------------------------------------------
 " mattn/emmet-vim
 " ------------------------------------------------------------
-let g:user_emmet_expandabbr_key = '<Tab>a'
+" let g:user_emmet_expandabbr_key = '<Tab>a'
 
 " ------------------------------------------------------------
 " scrooloose/nerdcommenter'
